@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/tshepisomogapi/.dotnet/store/|arch|/|tfm|",
+      "/Users/tshepisomogapi/.nuget/packages"
+    ]
+  }
+}
