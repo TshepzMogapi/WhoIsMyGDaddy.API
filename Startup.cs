@@ -45,7 +45,8 @@ namespace WhoIsMyGDaddy.API
             services.AddControllers();
 
             services.AddDbContext<AppDbContext>(options => {
-                options.UseInMemoryDatabase("whos-my-g-daddy-api-in-memory");
+                // options.UseInMemoryDatabase("whos-my-g-daddy-api-in-memory");
+                options.UseSqlServer(Configuration.GetConnectionString("AppDbContext"));
             });
 
             services.AddScoped<IPersonRepository, PersonRepository>();

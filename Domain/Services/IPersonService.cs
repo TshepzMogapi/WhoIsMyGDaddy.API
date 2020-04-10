@@ -6,6 +6,7 @@ namespace WhoIsMyGDaddy.API.Domain.Services
 {
     public interface IPersonService
     {
-        Task<IEnumerable<Person>> ListAsync();
+        Task<IEnumerable<Person>> ListAsync(); 
+        Task<IEnumerable<Person>> GetAllListAsync(string id);
     }   
 }

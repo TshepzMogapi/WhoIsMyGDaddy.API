@@ -18,7 +18,12 @@ namespace WhoIsMyGDaddy.API.Services {
         
         public async Task<IEnumerable<Person>> ListAsync()
         {
-            return await _personRepository.ListAsync();
+            return await _personRepository.GetAllListAsync();
+        }
+
+        public async Task<IEnumerable<Person>> GetAllListAsync(string identityNumber)
+        {
+            return await _personRepository.GetAllListAsync(p => p.IdentityNumber == identityNumber);
         }
     }
 }
