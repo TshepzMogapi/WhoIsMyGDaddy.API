@@ -44,6 +44,10 @@ namespace WhoIsMyGDaddy.API
             });
             services.AddControllers();
 
+            // services.AddDbContext<AppDbContext>(options =>
+            //             options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")),
+            // ServiceLifetime.Transient);
+
             services.AddDbContext<AppDbContext>(options => {
                 // options.UseInMemoryDatabase("whos-my-g-daddy-api-in-memory");
                 options.UseSqlServer(Configuration.GetConnectionString("AppDbContext"));

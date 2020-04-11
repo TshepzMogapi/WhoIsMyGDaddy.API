@@ -8,5 +8,6 @@ namespace WhoIsMyGDaddy.API.Domain.Services
     {
         Task<IEnumerable<Person>> ListAsync(); 
         Task<IEnumerable<Person>> GetAllListAsync(string id);
+        Task<IEnumerable<Person>> Get(string id);
     }   
 }

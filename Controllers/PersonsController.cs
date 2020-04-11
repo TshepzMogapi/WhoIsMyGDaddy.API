@@ -33,6 +33,15 @@ namespace WhoIsMyGDaddy.API.Domain.Controllers
 
         }
 
+        // [HttpGet("search/{id}")]
+        // public async Task<IEnumerable<Person>> GetAncestorByIdAsync(string id){
+
+        //     return await _personService.Get(
+        //         id);
+
+        // }
+
+
 
     }
 
