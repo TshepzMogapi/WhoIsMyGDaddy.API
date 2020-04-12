@@ -25,7 +25,7 @@ namespace WhoIsMyGDaddy.API.Domain.Persistence.Contexts
             builder.Entity<Person>().HasKey(p => p.Id);
 
             // TODO: modify , add othe props
-            builder.Entity<Person>().Property(p => p.Id).IsRequired();
+            // builder.Entity<Person>().Property(p => p.Id).IsRequired();
             builder.Entity<Person>().Property(p => p.Name).IsRequired().HasMaxLength(30);
             builder.Entity<Person>().Property(p => p.Surname);
             builder.Entity<Person>().Property(p => p.MotherId);

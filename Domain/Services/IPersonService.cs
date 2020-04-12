@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WhoIsMyGDaddy.API.Domain.Models;
 
 namespace WhoIsMyGDaddy.API.Domain.Services

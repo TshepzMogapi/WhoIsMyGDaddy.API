@@ -31,7 +31,7 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
         }
 
 
-        public Task<IEnumerable<Person>>  Get(Expression<Func<Person, Boolean>> predicate)
+        public Task<IEnumerable<Person>> Get(Expression<Func<Person, Boolean>> predicate)
         {
 
             return Task.Run(() =>
@@ -57,32 +57,31 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
                 }
 
                 StringBuilder varname1 = new StringBuilder();
-                varname1.Append("DECLARE @CodeId INT = 1005 \n");
-                varname1.Append("  \n");
-                varname1.Append(";");
+                varname1.Append("WITH Ancestors (FatherId, MotherId, Id, Name, Surname, BirthDate,IdentityNumber) \n");
+                varname1.Append("AS \n");
+                varname1.Append("( \n");
+                
+                varname1.Append("    SELECT e.FatherId, e.MotherId, e.Id, e.Name, e.Surname, e.BirthDate, e.IdentityNumber \n");
+                varname1.Append("         \n");
+                varname1.Append("    FROM Persons AS e \n");
+                varname1.Append("    WHERE e.id = {0} \n");
+                varname1.Append("    UNION ALL \n");
 
-
-                StringBuilder varname11 = new StringBuilder();
-                varname11.Append("WITH cteID \n");
-                varname11.Append("As \n");
-                varname11.Append("( \n");
-                varname11.Append("  \n");
-                varname11.Append("    SELECT \n");
-                varname11.Append("        Id, FatherId, MotherId, Name, BirthDate, Surname, IdentityNumber,1 AS CodePosition \n");
-                varname11.Append("    FROM \n");
-                varname11.Append("        Persons WHERE Id = @CodeId \n");
-                varname11.Append("    UNION All \n");
-                varname11.Append("    SELECT \n");
-                varname11.Append("        ic.Id, ic.FatherId, ic.MotherId, ic.Name, ic.BirthDate, ic.Surname, ic.IdentityNumber,CodePosition + 1 \n");
-                varname11.Append("    FROM Persons ic \n");
-                varname11.Append("    INNER JOIN cteID cte ON ic.Id = cte.MotherId OR cte.FatherId = ic.Id \n");
-                varname11.Append(") \n");
-                varname11.Append("SELECT TOP 1 * FROM cteID \n");
-                varname11.Append("ORDER BY CodePosition DESC");
+                varname1.Append("    SELECT e.FatherId, e.MotherId, e.Id, e.Name, e.Surname, e.BirthDate, e.IdentityNumber \n");
+                varname1.Append("         \n");
+                varname1.Append("    FROM Persons AS e \n");
+                varname1.Append("    INNER JOIN Ancestors AS d \n");
+                varname1.Append("        ON e.Id = d.FatherId or e.Id = d.MotherId \n");
+                varname1.Append(") \n");
+                
+                varname1.Append("SELECT FatherId, MotherId, Id, Name, Surname, BirthDate,IdentityNumber \n");
+                varname1.Append("FROM Ancestors");
 
 
                 var ancestor = dbSet
                 .FromSqlRaw(varname1.ToString(), person.Id).ToList();
+
+                Console.Write(ancestor);
 
                 return ancestor;
 

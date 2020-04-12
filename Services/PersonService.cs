@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WhoIsMyGDaddy.API.Domain.Models;
 using WhoIsMyGDaddy.API.Domain.Repositories;
 using WhoIsMyGDaddy.API.Domain.Services;
