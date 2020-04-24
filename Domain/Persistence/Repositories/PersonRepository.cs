@@ -81,7 +81,6 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
                 var ancestor = dbSet
                 .FromSqlRaw(varname1.ToString(), person.Id).ToList();
 
-                Console.Write(ancestor);
 
                 return ancestor;
 
