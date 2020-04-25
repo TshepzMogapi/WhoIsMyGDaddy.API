@@ -8,7 +8,7 @@ namespace WhoIsMyGDaddy.API.Domain.Services
     public interface IPersonService
     {
         Task<IEnumerable<Person>> ListAsync(); 
-        Task<IEnumerable<Person>> GetAllListAsync(string id);
-        Task<IEnumerable<Person>> Get(string id);
+        Task<IEnumerable<Person>> GetDescendantsAsync(string id);
+        Task<IEnumerable<Person>> GetAncestorByIdAsync(string id);
     }   
 }

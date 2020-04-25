@@ -20,7 +20,7 @@ namespace WhoIsMyGDaddy.API.Domain.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<Person>> GetAncestorByIdAsync(string id){
 
-            return await _personService.Get(
+            return await _personService.GetAncestorByIdAsync(
                 id);
 
         }

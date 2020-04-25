@@ -22,13 +22,13 @@ namespace WhoIsMyGDaddy.API.Services {
             return await _personRepository.GetAllListAsync();
         }
 
-         public async Task<IEnumerable<Person>> Get(string identityNumber){
-            return await _personRepository.Get(p => p.IdentityNumber == identityNumber);
+         public async Task<IEnumerable<Person>> GetAncestorByIdAsync(string identityNumber){
+            return await _personRepository.GetAncestorByIdAsync(p => p.IdentityNumber == identityNumber);
          }
 
-        public async Task<IEnumerable<Person>> GetAllListAsync(string identityNumber)
+        public async Task<IEnumerable<Person>> GetDescendantsAsync(string identityNumber)
         {
-            return await _personRepository.GetAllListAsync(p => p.IdentityNumber == identityNumber);
+            return await _personRepository.GetDescendantsAsync(p => p.IdentityNumber == identityNumber);
         }
     }
 }

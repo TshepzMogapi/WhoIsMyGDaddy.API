@@ -28,7 +28,7 @@ namespace WhoIsMyGDaddy.API.Domain.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<Person>> GetAllByIdAsync(string id){
 
-            return await _personService.GetAllListAsync(
+            return await _personService.GetDescendantsAsync(
                 id);
 
         }

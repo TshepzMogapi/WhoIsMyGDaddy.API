@@ -31,7 +31,7 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
         }
 
 
-        public Task<IEnumerable<Person>> Get(Expression<Func<Person, Boolean>> predicate)
+        public Task<IEnumerable<Person>> GetAncestorByIdAsync(Expression<Func<Person, Boolean>> predicate)
         {
 
             return Task.Run(() =>
@@ -145,7 +145,7 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
 
         }
 
-        public Task<IEnumerable<Person>> GetAllListAsync(Expression<Func<Person, Boolean>> predicate)
+        public Task<IEnumerable<Person>> GetDescendantsAsync(Expression<Func<Person, Boolean>> predicate)
         {
             return Task.Run(() =>
             {
