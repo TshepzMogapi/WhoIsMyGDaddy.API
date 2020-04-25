@@ -31,17 +31,26 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
         }
 
 
+// GetAncestorByIdAsync
+// GetDescendantsAsync
+
+        public Task<IEnumerable<Person>> GetDescendantsAsync(Expression<Func<Person, Boolean>> predicate) {
+            return Task.Run(() =>
+            {
+                return GetDescendants(predicate);
+            });
+        }
         public Task<IEnumerable<Person>> GetAncestorByIdAsync(Expression<Func<Person, Boolean>> predicate)
         {
 
             return Task.Run(() =>
             {
-                return GetData(predicate);
+                return GetAncestors(predicate);
             });
 
         }
 
-        public IEnumerable<Person> GetData(Expression<Func<Person, bool>> predicate)
+        public IEnumerable<Person> GetAncestors(Expression<Func<Person, bool>> predicate)
         {
             try
             {
@@ -92,7 +101,7 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
             }
 
         }
-        public IEnumerable<Person> GetAllData(Expression<Func<Person, bool>> predicate)
+        public IEnumerable<Person> GetDescendants(Expression<Func<Person, bool>> predicate)
         {
             try
             {
@@ -145,12 +154,10 @@ namespace WhoIsMyGDaddy.API.Persistence.Repositories
 
         }
 
-        public Task<IEnumerable<Person>> GetDescendantsAsync(Expression<Func<Person, Boolean>> predicate)
-        {
-            return Task.Run(() =>
-            {
-                return GetAllData(predicate);
-            });
+
+        public async Task AddPersonsAsync(List<Person> personList) {
+            await _context.Persons.AddRangeAsync(personList);
         }
+      
     }
 }

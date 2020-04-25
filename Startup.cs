@@ -51,9 +51,10 @@ namespace WhoIsMyGDaddy.API
             if (CurrentEnvironment.IsEnvironment("Testing")) {
 
                 services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("TestingDB"));
+                
 
             } else {
-                 services.AddDbContext<AppDbContext>(options => {
+                services.AddDbContext<AppDbContext>(options => {
                 // options.UseInMemoryDatabase("whos-my-g-daddy-api-in-memory");
                 options.UseSqlServer(Configuration.GetConnectionString("AppDbContext"));
             });

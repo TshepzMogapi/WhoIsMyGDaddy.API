@@ -12,8 +12,8 @@ namespace WhoIsMyGDaddy.API.Domain.Repositories {
     public interface IPersonRepository {
         Task<IEnumerable<Person>> GetAllListAsync();
         Task<IEnumerable<Person>> GetAncestorByIdAsync(Expression<Func<Person, bool>> predicate);
-
         Task<IEnumerable<Person>> GetDescendantsAsync(Expression<Func<Person, bool>> predicate);
+        Task AddPersonsAsync(List<Person> person);
     }
 
 }
